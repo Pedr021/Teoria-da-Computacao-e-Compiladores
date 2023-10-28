@@ -1,15 +1,27 @@
-//Versão Recursiva
+#include <stdio.h>
 
-def f(n):
-if n % 2 == 0:
-return -n // 2
-else:
-return n // 2 + 1
-def print_f_series(limite, i=0):
-if i > limite:
-return
-result = f(i)
-print(f"[{i}, {result}], ", end="")
-print_f_series(limite, i + 1)
-limite = int(input("Informe o limite: "))
-print_f_series(limite)
+int f(int n) {
+    if (n % 2 == 0) {
+        return -n / 2;
+    } else {
+        return n / 2 + 1;
+    }
+}
+
+void print_f_series(int limite, int i) {
+    if (i > limite) {
+        return;
+    }
+    int result = f(i);
+    printf("[%d, %d], ", i, result);
+    print_f_series(limite, i + 1);
+}
+
+int main() {
+    int limite;
+    printf("Informe o límite: ");
+    scanf("%d", &limite);
+    print_f_series(limite, 0);
+    printf("\n");
+    return 0;
+}
