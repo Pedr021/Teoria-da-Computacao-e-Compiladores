@@ -1,39 +1,53 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <string.h>
 
-// Definindo os estados do AFD
-enum States {
-    q0,  // Estado inicial e de aceitação
-    q1   // Estado alternativo
+// Definição dos estados
+enum Estados {
+    Q0,
+    Q1,
+    Q2,
+    Q3
 };
 
-// Função de transição do AFD
-enum States transition(enum States currentState, char input) {
-    switch (currentState) {
-        case q0:
-            return (input == '0') ? q1 : q0;
-        case q1:
-            return (input == '0') ? q0 : q1;
+// Função para verificar se a palavra é aceita pelo AFD
+bool verificaPalavra(char *palavra) {
+    int estado = Q0;
+
+    for (int i = 0; i < strlen(palavra); i++) {
+        char simbolo = palavra[i];
+
+        switch (estado) {
+        case Q0:
+            estado = (simbolo == '0') ? Q1 : Q2;
+            break;
+        case Q1:
+            estado = (simbolo == '0') ? Q0 : Q3;
+            break;
+        case Q2:
+            estado = (simbolo == '0') ? Q3 : Q0;
+            break;
+        case Q3:
+            estado = (simbolo == '0') ? Q2 : Q1;
+            break;
+        }
     }
-    return currentState; // Caso de erro
-}
 
-// Função principal para verificar se uma palavra é aceita pelo AFD
-int isAccepted(char *input) {
-    enum States currentState = q0;
-    int len = strlen(input);
-
-    for (int i = 0; i < len; i++) {
-        currentState = transition(currentState, input[i]);
-    }
-
-    return (currentState == q0); // Verifica se a palavra termina no estado de aceitação q0
+    return estado == Q0;
 }
 
 int main() {
-    // Exemplos de uso
-    char palavraExemplo[] = "teste";
-    printf("Palavra exemplo: %s\n", isAccepted(palavraExemplo) ? "Aceita" : "Rejeitada");
+    char palavra[100];
+
+    printf("Digite uma palavra (composta por '0' e '1'): ");
+    scanf("%s", palavra);
+
+    if (verificaPalavra(palavra)) {
+        printf("A palavra '%s' é aceita pelo AFD.\n", palavra);
+    } else {
+        printf("A palavra '%s' não é aceita pelo AFD.\n", palavra);
+    }
 
     return 0;
 }
+
