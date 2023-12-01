@@ -37,19 +37,15 @@ int isAccepted(char *input) {
 }
 
 int main() {
-    // Exemplos de uso
-    char word1[] = "pedro";      // Palavra vazia
-    char word2[] = "0110";  // Aceita
-    char word3[] = "00110"; // Aceita
-    char word4[] = "000";   // Rejeitada
-    char word5[] = "111";   // Rejeitada
+    char userInput[100];  // Assumindo que a palavra terá no máximo 100 caracteres
 
-    // Verifica se cada palavra é aceita pelo AFD
-    printf("Palavra vazia: %s\n", isAccepted(word1) ? "Aceita" : "Rejeitada");
-    printf("0110: %s\n", isAccepted(word2) ? "Aceita" : "Rejeitada");
-    printf("00110: %s\n", isAccepted(word3) ? "Aceita" : "Rejeitada");
-    printf("000: %s\n", isAccepted(word4) ? "Aceita" : "Rejeitada");
-    printf("111: %s\n", isAccepted(word5) ? "Aceita" : "Rejeitada");
+    // Solicita ao usuário que insira uma palavra
+    printf("Digite uma palavra: ");
+    scanf("%s", userInput);
+
+    // Verifica se a palavra é aceita pelo AFD
+    printf("Palavra \"%s\": %s\n", userInput, isAccepted(userInput) ? "Aceita" : "Rejeitada");
 
     return 0;
 }
+
