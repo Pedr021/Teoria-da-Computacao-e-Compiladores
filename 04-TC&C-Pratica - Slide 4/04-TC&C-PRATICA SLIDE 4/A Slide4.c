@@ -1,6 +1,6 @@
 #include <stdio.h>
+#include <stddef.h>
 
-// Função para calcular o tamanho de uma string de forma recursiva
 int recursive_length(char *str) {
     if (*str == '\0') {
         return 0;
@@ -13,7 +13,7 @@ int main() {
     FILE *file = fopen(filename, "r");
 
     if (file == NULL) {
-        printf("Leia a string.\n");
+        printf("Não foi possível abrir o arquivo para leitura.\n");
         return 1;
     }
 
@@ -21,11 +21,11 @@ int main() {
     char original_string[1000];
     fgets(original_string, sizeof(original_string), file);
 
-    // Determinar o tamanho da string de forma recursiva
-    int string_length = recursive_length(original_string);
-
     // Fechar o arquivo de leitura
     fclose(file);
+
+    // Determinar o tamanho da string de forma recursiva
+    int string_length = recursive_length(original_string);
 
     // Abrir o arquivo no modo de escrita
     file = fopen(filename, "a");
