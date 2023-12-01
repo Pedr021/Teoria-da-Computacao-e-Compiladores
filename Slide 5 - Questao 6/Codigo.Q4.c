@@ -52,7 +52,7 @@ int pertenceLinguagem(char *str) {
 
 int main() {
     char palavra1[] = "aaa";      // Exemplo de palavra aceita
-    char palavra2[] = "babab";    // Exemplo de palavra aceita
+    char palavra2[] = "bbaa";    // Exemplo de palavra aceita
     char palavra3[] = "bb";       // Exemplo de palavra aceita
     char palavra4[] = "abc";      // Exemplo de palavra rejeitada
 
